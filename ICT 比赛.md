@@ -128,7 +128,7 @@ copyright
 
      上面的代码可以替换成下面的代码，就不用写cmp函数了，建议都按下面的写法
 
-     `sort(points.begin(), points.end(), [](int[] a, int[] b)->bool{return a > b;})`
+     `sort(points.begin(), points.end(), [](int[] a, int[] b)->bool{return a[0] > b[0];})`
 
      这里用到了[lambda表达式](https://blog.csdn.net/qq_37085158/article/details/124626913)
 
