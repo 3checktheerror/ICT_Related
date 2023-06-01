@@ -132,7 +132,7 @@ copyright
 
      这里用到了[lambda表达式](https://blog.csdn.net/qq_37085158/article/details/124626913)
 
-LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！！！！！！！！！！！！c++的sort，for_each这些函数都要用到lambda表达式，刷算法题快
+LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！！！！！！！！！！！！c++的`sort`，`for_each`这些函数都要用到lambda表达式，刷算法题快
 
-大家顺便熟悉下for_each, sort这些函数
+大家顺便熟悉下`for_each`, `sort`这些函数
 
