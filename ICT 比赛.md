@@ -169,6 +169,8 @@ LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！�
 
 基础掌握了，有时间看看相关题目，看就行，留个印象，不至于做不出
 
+
+
 ### 6/4/2023
 
 1. **动态规划——零钱兑换**
@@ -225,6 +227,8 @@ LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！�
      3. 先遍历物品还是先遍历背包？这题没影响
      4. dp递推公式：每次都取最小值
 
+
+
 ### 6/5/2023
 
 动态规划——判断子序列
@@ -250,19 +254,63 @@ LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！�
 
 [打家劫舍](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0198.%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D.md)
 
+
+
 ### 6/7/2023
+
+站和队列——前K个高频元素
+
+[点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0347.%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.md)
+
+这道题比较综合，难在对容器的使用上，大家这道题完全看懂了，容器就基本理解了
+
+1. 先把键值对（每个元素出现的个数）放在哈希表map中
+
+2. 构造优先级队列priority_queue，注意构造函数的写法，时间不够，记住就行
+
+3. 把哈希表中的元素放到优先级队列中
+
+4. 出队
+
+5. 下面的代码不要用，用`for(auto elem:map)`就行，大家以后遍历一个容器中的元素，全部用for auto的写法，不要遍历迭代器
+
+   ```c++ 
+   for (unordered_map<int, int>::iterator it = map.begin(); it != map.end(); it++) {
+               pri_que.push(*it);
+               if (pri_que.size() > k) { // 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k
+                   pri_que.pop();
+               }
+           }
+   //这串代码改成
+   for (auto elem : map) {
+               pri_que.push(elem);
+               if (pri_que.size() > k) { // 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k
+                   pri_que.pop();
+               }
+           }
+   ```
+
+   
 
 
 
 ### 6/8/2023
 
-介绍单调栈，单调栈没啥知识点，就
+介绍单调栈，单调栈没啥知识点，就en看题目就行了，难就难在模拟出入栈的过程
 
 [点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0042.%E6%8E%A5%E9%9B%A8%E6%B0%B4.md)
 
+
+
 ### 6/9/2023
 
+[翻转列表](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.md)
 
+[删除倒数第K个节点](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0019.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9.md)
+
+[螺旋矩阵](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.md)
+
+再熟悉一波api，vector,map,set,string的成员函数，链表和数组再看看
 
 
 
