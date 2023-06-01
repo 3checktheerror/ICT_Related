@@ -8,6 +8,8 @@ copyright
 
 ## 每日总结
 
+
+
 ### 6/1/2023
 
 1. **层序遍历**
@@ -115,6 +117,8 @@ copyright
 
 
 
+
+
 ### 6/2/2023
 
 
@@ -139,4 +143,132 @@ copyright
 LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！！！！！！！！！！！！c++的`sort`，`for_each`这些函数都要用到lambda表达式，刷算法题快
 
 大家顺便熟悉下`for_each`, `sort`这些函数
+
+虽然今天只有一道题，但是大家主要还是熟悉lambda表达式，会用就行了
+
+
+
+
+
+### 6/3/2023
+
+明天是动态规划题目，所以今天先回顾下基础
+
+[点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.md)
+
+[还有这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-2.md)
+
+我们做题基本用滚动数组做，代码简单
+
+我总结一波：
+
+1. 动态规划中，背包问题占很大一部分，所以背包问题要掌握
+2. dp初始化很有讲究
+3. 根据dp递推公式可以确定遍历顺序
+4. 内层循环遍历背包容量：适用于组合问题，因为物品是按顺序考虑的；反过来，内层循环遍历物品，适用于排序问题，因为每一次容量都考虑了所有物品
+
+基础掌握了，有时间看看相关题目，看就行，留个印象，不至于做不出
+
+### 6/4/2023
+
+1. **动态规划——零钱兑换**
+
+   [点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2.md)
+
+   动态规划例题，算法课学过的
+
+   动态规划注意：
+
+   * dp数组初始化
+   * 遍历顺序 + 先遍历物品还是先遍历背包
+   * dp表达式
+
+   
+
+   这题我拿Java分析，Java和C++差不多的
+
+   ```java
+   class Solution {
+       public int coinChange(int[] coins, int amount) {
+           int max = Integer.MAX_VALUE;
+           int[] dp = new int[amount + 1];
+           //初始化dp数组为最大值
+           for (int j = 0; j < dp.length; j++) {
+               dp[j] = max;
+           }
+           //当金额为0时需要的硬币数目为0
+           dp[0] = 0;
+           //考虑物品（硬币）i
+           for (int i = 0; i < coins.length; i++) {
+               //必须正序遍历：完全背包每个硬币可以选择多次
+               for (int j = coins[i]; j <= amount; j++) 
+                   //j - coins[i]这个容量必须可以被装满，否则就循环下一次
+                   if (dp[j - coins[i]] != max) {
+                       //选择硬币数目最小的情况
+                       dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);//dp[j]每次必须取最小的
+                   }
+               }
+           }
+           return dp[amount] == max ? -1 : dp[amount];
+       }
+   }
+   ```
+
+   
+
+   * 动态规划的题目都用到了vector，大家要掌握vector的初始化和成员函数
+
+     这题大家注意：
+
+     1. 为什么dp要初始化成`Integer.MAX_VALUE`？因为`dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);`每次是取最小值
+     2. 为什么从前往后遍历背包容量？因为一个硬币可以取多次
+     3. 先遍历物品还是先遍历背包？这题没影响
+     4. dp递推公式：每次都取最小值
+
+### 6/5/2023
+
+动态规划——判断子序列
+
+这题不是背包问题，简单一（亿）点
+
+[点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0392.%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97.md)
+
+1. 注意dp的意义
+2. 这种题的切入口就是`s.charAt(i-1) == t.charAt(j-1)`,也就是判断s[i]和t[j]是否相同
+3. `dp[i][j] = dp[i][j-1];`而不是`dp[i][j] = dp[i-1][j];`
+4. 注意初始化`vector<vector<int>> dp(s.size() + 1, vector<int>(t.size() + 1, 0));`注意+1
+
+
+
+### 6/6/2023
+
+下面的题目也都不是背包问题，大家可以做一做
+
+为什么需要强调动态规划，因为好多题都可以用动态规划做
+
+[买卖股票](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0122.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89.md)
+
+[打家劫舍](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0198.%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D.md)
+
+### 6/7/2023
+
+
+
+### 6/8/2023
+
+介绍单调栈，单调栈没啥知识点，就
+
+[点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0042.%E6%8E%A5%E9%9B%A8%E6%B0%B4.md)
+
+### 6/9/2023
+
+
+
+
+
+
+
+
+
+
 
