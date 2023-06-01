@@ -1,5 +1,7 @@
 # ICT 比赛
 
+copyright
+
 ## 每日总结
 
 ### 6/1/2023
@@ -41,5 +43,70 @@
    * 注意这里空结点是否入队`if (node->left) que.push(node->left);`
 
    * `size`一定要提前规定
+   * 注意求二叉树最小深度，要判断**左右节点都为空**
 
-2. 
+2. 回溯——组合问题
+
+   [点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0077.%E7%BB%84%E5%90%88.md)
+
+   模板如下：
+
+   ```c++
+   void backtracking(参数) {
+       if (终止条件) {
+           存放结果;
+           return;
+       }
+   
+       for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) {
+           处理节点;
+           backtracking(路径，选择列表); // 递归
+           回溯，撤销处理结果
+       }
+   }
+   ```
+
+   ```c++
+   class Solution {
+   private:
+       vector<vector<int>> result;//模板
+       vector<int> path;//也是模板
+       void backtracking(int n, int k, int startIndex) {
+           if (path.size() == k) {	//加入结果集
+               result.push_back(path);
+               return;
+           }
+           for (int i = startIndex; i <= n - (k - path.size()) + 1; i++) { // 如果i > n - (k - path.size()) + 1,肯定取不到K个数
+               //上面的剪枝等价于
+               //if(i > n - (k - path.size()) + 1) break;
+               path.push_back(i); // 处理节点
+               backtracking(n, k, i + 1);
+               path.pop_back(); // 回溯，撤销处理的节点
+           }
+       }
+   public:
+   
+       vector<vector<int>> combine(int n, int k) {
+           backtracking(n, k, 1);//注意这里最后一个参数是1
+           return result;
+       }
+   };
+   ```
+
+   
+
+   * 其实回溯套路比较固定的，都是用这个模板
+
+   * 然后就是回溯的每道题，心里都要有下面这颗树，后面所有回溯题，都要根据这棵树写代码
+
+     因为是组合问题，数不能重复取，并且给你的数组已经默认有序，所以树长这样
+
+     <img src="ICT 比赛.assets/image-20230601102810447.png" alt="image-20230601102810447" style="zoom:67%;" />
+
+   
+
+   * 回溯相比暴力循环，就是用空间换时间，用递归栈替代一部分循环
+   * 剪枝优化可以不掌握，但是对锻炼思维有帮助
+
+   
+
