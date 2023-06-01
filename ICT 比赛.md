@@ -6,7 +6,7 @@ copyright
 
 ### 6/1/2023
 
-1. 层序遍历
+1. **层序遍历**
 
    下面的题都看一看
 
@@ -45,7 +45,7 @@ copyright
    * `size`一定要提前规定
    * 注意求二叉树最小深度，要判断**左右节点都为空**
 
-2. 回溯——组合问题
+2. **回溯——组合问题**
 
    [点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0077.%E7%BB%84%E5%90%88.md)
 
@@ -107,7 +107,32 @@ copyright
 
    * 回溯相比暴力循环，就是用空间换时间，用递归栈替代一部分循环
    * 剪枝优化可以不掌握，但是对锻炼思维有帮助
-   * 
 
-   
+
+
+
+### 6/2/2023
+
+
+   1. **贪心——用最少数量的箭引爆气球**
+
+      [点击这里](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0452.%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83.md)
+
+   * 先按照左边界排序
+
+   * 如果当前气球左边界>前一个气球右边界，那就肯定要多一支箭了
+
+   * 否则，更新右边界=最小右边界
+
+   * 这题不难，但是需要注意`sort(points.begin(), points.end(), cmp);`这在算法中非常常见
+
+     上面的代码可以替换成下面的代码，就不用写cmp函数了，建议都按下面的写法
+
+     `sort(points.begin(), points.end(), [](int[] a, int[] b)->bool{return a > b;})`
+
+     这里用到了[lambda表达式](https://blog.csdn.net/qq_37085158/article/details/124626913)
+
+LAMBDA表达式非常重要！！！！！！！！！！！！！！！！！！！！！！！！！！！！c++的sort，for_each这些函数都要用到lambda表达式，刷算法题快
+
+大家顺便熟悉下for_each, sort这些函数
 
